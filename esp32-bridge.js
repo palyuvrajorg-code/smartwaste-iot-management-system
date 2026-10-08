@@ -2,7 +2,7 @@
 // Lightweight Node.js bridge to receive ESP32 ultrasonic readings and push real-time alerts to the driver frontend.
 import http from 'http';
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 let sseClients = [];
 let lastTelemetry = {
   binId: 'BIN-101',
