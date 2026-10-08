@@ -9,7 +9,7 @@ import {
   Clock,
   Sparkles
 } from 'lucide-react';
-import { binService, driverService, authService } from '../../services/api';
+import { binService, driverService, authService, notificationService } from '../../services/api';
 
 export default function DriverHome() {
   const [driver, setDriver] = useState(null);
@@ -23,7 +23,7 @@ export default function DriverHome() {
     // Connect to live ESP32 Bridge SSE Stream
     let eventSource;
     try {
-      const eventSource = new EventSource('https://smartwaste-iot-bridge.onrender.com/api/events');
+      eventSource = new EventSource('https://smartwaste-iot-bridge.onrender.com/api/events');
 
       eventSource.onopen = () => {
         setBridgeConnected(true);
