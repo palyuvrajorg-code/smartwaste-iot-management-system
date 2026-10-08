@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Truck, 
-  Navigation, 
-  CheckCircle2, 
-  MapPin, 
-  Bell, 
+import {
+  Truck,
+  Navigation,
+  CheckCircle2,
+  MapPin,
+  Bell,
   AlertCircle,
   Clock,
   Sparkles
@@ -23,7 +23,7 @@ export default function DriverHome() {
     // Connect to live ESP32 Bridge SSE Stream
     let eventSource;
     try {
-      eventSource = new EventSource('http://localhost:5000/api/events');
+      const eventSource = new EventSource('https://smartwaste-iot-bridge.onrender.com/api/events');
 
       eventSource.onopen = () => {
         setBridgeConnected(true);
@@ -69,9 +69,9 @@ export default function DriverHome() {
 
     const bins = binService.getBins();
     // Show bins that are full (critical or collection requested)
-    const fullBins = bins.filter(b => 
-      b.collectionRequested || 
-      b.status === 'CRITICAL' || 
+    const fullBins = bins.filter(b =>
+      b.collectionRequested ||
+      b.status === 'CRITICAL' ||
       b.status === 'WARNING' ||
       current.assignedBins?.includes(b.id)
     );
@@ -97,7 +97,7 @@ export default function DriverHome() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '800px', margin: '0 auto' }}>
-      
+
       {/* Top Welcome & Truck Info */}
       <div style={{
         background: 'rgba(16, 23, 41, 0.85)',
